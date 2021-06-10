@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Button from "../components/Button";
 import Error from "../components/Error";
 import FlashCard from "../components/FlashCard";
@@ -120,6 +123,7 @@ export default function FlashCardsPage() {
       setAllCards(filteredCards);
 
       setError("");
+      toast.success("Card excluído com sucesso.");
     } catch (err) {
       setError(err.message);
     }
@@ -137,6 +141,7 @@ export default function FlashCardsPage() {
         setAllCards(newSetOfFlashCards);
 
         setError("");
+        toast.success(`Card "${title}" incluído com sucesso.`);
       } catch (err) {
         setError(err.message);
       }
@@ -158,6 +163,7 @@ export default function FlashCardsPage() {
         setCreateMode(true);
 
         setError("");
+        toast.success(`Card "${title}" alterado com sucesso.`);
       } catch (err) {
         setError(err.message);
       }
@@ -260,6 +266,7 @@ export default function FlashCardsPage() {
 
   return (
     <>
+      <ToastContainer />
       <Header>React FlashCards - v3</Header>
 
       <Main>{mainJsx}</Main>
